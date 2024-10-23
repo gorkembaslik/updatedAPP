@@ -47,7 +47,7 @@ def get_channel_videos(channel_id, max_videos=50):
     videos = []
     next_page_token = None
     base_video_url = "https://www.youtube.com/watch?v="
-    six_months_ago = datetime.now() - timedelta(days=3*30) 
+    six_months_ago = datetime.now() - timedelta(days=2*30) 
 
     while len(videos) < max_videos:
         request = youtube.search().list(
