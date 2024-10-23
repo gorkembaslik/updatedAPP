@@ -29,7 +29,7 @@ api_key = 'AIzaSyDuyqqkQhp23johPm2V9Y_3cUK6-mc3d10'
 youtube = build('youtube', 'v3', developerKey=api_key)
 
 #vectorizer = joblib.load(r'C:\Users\GORKEM\Documents\VscodeProjects\commonAPP\Model Training\tfidf_vectorizer.pkl')
-model = joblib.load(r'C:\Users\GORKEM\Documents\VscodeProjects\commonAPP\Model Training\sentiment_model.pkl')
+model = joblib.load(r'C:\Users\GORKEM\Documents\VscodeProjects\updatedAPP\sentiment_model.pkl')
 
 lemmatizer = WordNetLemmatizer()
 
