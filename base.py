@@ -25,7 +25,7 @@ from datetime import datetime, timedelta
 import gdown
 import os
 
-api_key = 'AIzaSyDuyqqkQhp23johPm2V9Y_3cUK6-mc3d10'
+api_key = 'AIzaSyDnP5H86rglgZOoeKzLrUAyygaZgEi6QOY'
 youtube = build('youtube', 'v3', developerKey=api_key)
 
 #vectorizer = joblib.load(r'C:\Users\GORKEM\Documents\VscodeProjects\commonAPP\Model Training\tfidf_vectorizer.pkl')
