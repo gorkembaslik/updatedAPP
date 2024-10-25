@@ -25,7 +25,7 @@ from datetime import datetime, timedelta
 import gdown
 import os
 
-api_key = 'AIzaSyDnP5H86rglgZOoeKzLrUAyygaZgEi6QOY'
+api_key = 'AIzaSyBiSugmzbENy_cAVexEYAM5kYylMcv6ZvA'
 youtube = build('youtube', 'v3', developerKey=api_key)
 
 #vectorizer = joblib.load(r'C:\Users\GORKEM\Documents\VscodeProjects\commonAPP\Model Training\tfidf_vectorizer.pkl')
@@ -33,13 +33,12 @@ model = joblib.load('sentiment_model.pkl')
 
 lemmatizer = WordNetLemmatizer()
 
-#file_id = "1iSkNMFXU5BXNNE9OyubvmSEsCFDRk-5w"
-destination = "tfidf_vectorizer.pkl"
+file_id = "1iSkNMFXU5BXNNE9OyubvmSEsCFDRk-5w"
+download_url = f'https://drive.google.com/uc?export=download&id={file_id}'
 
-#download_url = f'https://drive.google.com/uc?export=download&id={file_id}'
-
-#if not os.path.exists(destination):
-#    gdown.download(download_url, destination, quiet=False)
+destination = 'tfidf_vectorizer.pkl'
+if not os.path.exists(destination):
+    gdown.download(download_url, destination, quiet=False)
 
 vectorizer = joblib.load(destination)
 
@@ -47,7 +46,7 @@ def get_channel_videos(channel_id, max_videos=50):
     videos = []
     next_page_token = None
     base_video_url = "https://www.youtube.com/watch?v="
-    six_months_ago = datetime.now() - timedelta(days=2*30) 
+    six_months_ago = datetime.now() - timedelta(days=3*30)
 
     while len(videos) < max_videos:
         request = youtube.search().list(
@@ -175,19 +174,6 @@ def analyze_sentiment(comments):
 
     return np.mean(numeric_sentiment_scores) if len(numeric_sentiment_scores) > 0 else 0
 
-#def is_video_sponsored(video_title, video_description, video_url):
-   
-    sponsored_keywords = [' is sponsored', 'paid promotion', 'partnered with', 'includes paid promotion', 'brand deal', 'paid partnership']
-    
-    combined_text = f"{video_title} {video_description}".lower()
-    
-    is_sponsored_by_keywords = any(keyword in combined_text for keyword in sponsored_keywords)
-
-    is_sponsored_by_disclaimer = check_sponsorship_disclaimer(video_url)
-
-    return is_sponsored_by_keywords or is_sponsored_by_disclaimer
-    
-
 def check_paid_promotion(video_id):
     url = f"https://www.youtube.com/watch?v={video_id}"
     
@@ -294,8 +280,6 @@ def evaluate_channel(channel_id):
         video_title = video['video_title']
         video_url = video['video_url']
         video_description = get_video_description(video_id)
-        
-
         
         #details = get_video_details(video_id)
         #comments = get_comments(video_id)
