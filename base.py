@@ -33,13 +33,13 @@ model = joblib.load('sentiment_model.pkl')
 
 lemmatizer = WordNetLemmatizer()
 
-file_id = "1iSkNMFXU5BXNNE9OyubvmSEsCFDRk-5w"
+#file_id = "1iSkNMFXU5BXNNE9OyubvmSEsCFDRk-5w"
 destination = "tfidf_vectorizer.pkl"
 
-download_url = f'https://drive.google.com/uc?export=download&id={file_id}'
+#download_url = f'https://drive.google.com/uc?export=download&id={file_id}'
 
-if not os.path.exists(destination):
-    gdown.download(download_url, destination, quiet=False)
+#if not os.path.exists(destination):
+#    gdown.download(download_url, destination, quiet=False)
 
 vectorizer = joblib.load(destination)
 
